@@ -172,5 +172,32 @@ window.addEventListener("scroll",()=>{
   document.getElementById("top").style.display=scrollY>400?"block":"none";
 });
 </script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxs2tum5N4xpcRK1sDV2YwoW8A1JDQIQ_QKw9iUwY4eob6Hp9Koph-QOqwA7iYj2IuF/exec";
+
+document.getElementById("form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    nama: document.getElementById("nama").value,
+    kelas: document.getElementById("kelas").value,
+    nohp: document.getElementById("wa").value,
+    alasan: document.getElementById("alasan").value
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    document.getElementById("success").style.display = "block";
+    document.getElementById("form").reset();
+
+  } catch (error) {
+    alert("Gagal mengirim pendaftaran.");
+  }
+});
+</script>
 </body>
 </html>
